@@ -1,8 +1,31 @@
-# React + Vite
+# React + Vite + Tailwind
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ejercicio sencillo para practicar fetch y tailwind.
 
-Currently, two official plugins are available:
+## Tecnologías Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React**: Biblioteca de JavaScript para construir interfaces de usuario.
+- **Vite**: Herramienta de construcción rápida para proyectos web modernos.
+- **Tailwind CSS**: Framework de CSS para diseño rápido y responsivo.
+
+## Instalación
+
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/tu-usuario/tu-repositorio.git
+   ```
+2. Navega al directorio del proyecto
+
+   ```bash
+   cd tu-repositorio
+   ```
+
+3. Instala las dependencias:
+   ```bash
+   npm install
+   ```
+4. Inicia el servidor de desarrollo
+
+   ```bash
+   npm run dev
+   ```
