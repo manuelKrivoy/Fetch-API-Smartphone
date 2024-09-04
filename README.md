@@ -12,7 +12,7 @@ Ejercicio sencillo para practicar fetch y tailwind.
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/tu-repositorio.git
+   git clone https://github.com/manuelKrivoy/Fetch-API-Smartphone.git
    ```
 2. Navega al directorio del proyecto
 
