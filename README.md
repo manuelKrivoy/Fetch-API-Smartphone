@@ -1,6 +1,6 @@
 # React + Vite + Tailwind
 
-Ejercicio sencillo para practicar fetch y tailwind.
+Ejercicio sencillo para practicar fetch y react router dom.
 
 ## Tecnologías Utilizadas
 
