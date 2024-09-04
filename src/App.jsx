@@ -1,44 +1,62 @@
-import { useEffect, useState } from "react";
 import "./App.css";
-import SearchBar from "./SearchBar";
-import ProductTable from "./ProductTable";
+import ProductForm from "./ProductForm";
 import "./index.css";
 import { ThemeProvider } from "./ThemeContext";
-
-function FilterableProductTable({ products }) {
-  const [filterText, setFilterText] = useState("");
-  const [filterExpensive, setFilterExpensive] = useState(false);
-  return (
-    <>
-      <SearchBar
-        onChangeTextValue={setFilterText}
-        textValue={filterText}
-        onChangeCheckboxValue={(value) => setFilterExpensive(value.target.checked)}
-        checkBoxValue={filterExpensive}
-      ></SearchBar>
-      <ProductTable products={products} filterText={filterText} filterExpensive={filterExpensive}></ProductTable>
-    </>
-  );
+import Layout from "./Layout";
+import FilterableProductTable from "./ProductList/FilterableProductTable";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ProductItem from "./ProductItem";
+import { action as productAction, loader as productsLoader } from "./Layout";
+import { loader as clientLoader } from "./ProductItem";
+import { action as formAction } from "./ProductForm";
+async function productLoader() {
+  const response = await fetch("https://dummyjson.com/products/category/smartphones");
+  const data = await response.json();
+  return data.products;
 }
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    // Loader y action son funciones que traen o escriben datos
+    loader: productsLoader,
+    action: productAction,
+    children: [
+      {
+        path: "/products",
+        loader: productLoader,
+        element: (
+          <ThemeProvider>
+            <FilterableProductTable />
+          </ThemeProvider>
+        ),
+      },
+      {
+        path: "product/:productId",
+        loader: clientLoader,
+        element: <ProductItem />,
+      },
+      {
+        path: "/product/:productId/edit",
+        element: <ProductForm />,
+        loader: clientLoader,
+        action: formAction,
+      },
+    ],
+  },
+]);
+
 function App() {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    fetch("https://dummyjson.com/products/category/smartphones")
-      .then((response) => response.json())
-      .then((data) => setProducts(data.products))
-      .catch((error) => {
-        console.log("error");
-      });
-  }, []);
-
-  console.log(products);
-
   return (
     <div>
-      <ThemeProvider>
-        <FilterableProductTable products={products} />
-      </ThemeProvider>
+      <RouterProvider router={router}>
+        <Layout>
+          <ThemeProvider>
+            <FilterableProductTable />
+          </ThemeProvider>
+        </Layout>
+      </RouterProvider>
     </div>
   );
 }

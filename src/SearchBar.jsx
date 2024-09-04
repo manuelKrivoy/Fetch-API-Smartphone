@@ -2,7 +2,7 @@ import React from "react";
 import { ThemeContext } from "./ThemeContext";
 
 const SearchBar = ({ onChangeTextValue, textValue, onChangeCheckboxValue, checkBoxValue }) => {
-  const { toggleTheme } = React.useContext(ThemeContext);
+  const { toggleTheme, theme } = React.useContext(ThemeContext);
   return (
     <div>
       <form className="mb-4 flex items-center">
@@ -20,8 +20,25 @@ const SearchBar = ({ onChangeTextValue, textValue, onChangeCheckboxValue, checkB
           onChange={onChangeCheckboxValue}
         />
         <label>solo mostrar productos baratos</label>
-        <button className="ml-5 px-4 py-2 bg-blue-500 text-white rounded" onClick={toggleTheme}>
-          Cambiar tema
+        <button className="ml-5 px-4 py-2 text-white rounded" onClick={toggleTheme}>
+          {
+            {
+              dark: (
+                <img
+                  className="w-9 h-9 rounded-md shadow-md transition-transform transform hover:scale-110 hover:shadow-lg m-2"
+                  src="/light.png"
+                  alt="Light"
+                />
+              ),
+              light: (
+                <img
+                  className="w-9 h-9 rounded-md shadow-md transition-transform transform hover:scale-110 hover:shadow-lg m-2"
+                  src="/dark.png"
+                  alt="Dark"
+                />
+              ),
+            }[theme]
+          }
         </button>
       </form>
     </div>
